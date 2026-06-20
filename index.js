@@ -47,11 +47,11 @@ app.post("/webhook", async (req, res) => {
 
     if (text === "/wave" || text === "/move") {
       mqttClient.publish(MQTT_TOPIC, "wave");
-      await sendTelegramMessage(chatId, "✅ Команда отправлена!");
+      await sendTelegramMessage(chatId, "✅ Command sent!");
     } else if (text === "/start") {
       await sendTelegramMessage(
         chatId,
-        "Привет! Напиши /wave чтобы запустить механизм."
+        "Hi! Send /wave to trigger the mechanism."
       );
     }
 
@@ -64,7 +64,7 @@ app.post("/webhook", async (req, res) => {
 
 // === Проверка что сервис жив ===
 app.get("/", (req, res) => {
-  res.send("Constructus Wave Bot работает ✅");
+  res.send("Constructus Wave Bot is running ✅");
 });
 
 const PORT = process.env.PORT || 3000;
